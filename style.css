@@ -1,0 +1,48 @@
+/* 設定整個視窗背景顏色為淡天空色 */
+body {
+    background-color: #b0e0e6; /* 淡天空色 */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* 中間淡黃色區域，放置資料內容 */
+#app1 {
+    background-color: #fffacd; /* 淡黃色 */
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.8); /* 陰影，淡黑色，透明度0.8，寬高3px */
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    font: 1em sans-serif;
+}
+
+/* 設定選擇水果與選擇數量的文字大小 */
+label {
+    font-size: 20px;
+}
+
+/* 設定選單的文字大小 */
+select {
+    font-size: 20px;
+}
+
+/* 設定選擇水果與選單在同一行 */
+#fruit-select {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+/* 設定選擇數量與選單及按鈕在同一行 */
+#quantity-select, button {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+/* 分成兩行顯示 */
+label[for="fruit-select"], label[for="quantity-select"] {
+    display: block;
+    margin-bottom: 10px;
+}

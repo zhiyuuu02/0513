@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>水果店</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app1">
+        <h1>{{ store_name }}</h1>
+        <p>{{ store_address }}</p>
+
+        <!-- 水果選單 -->
+        <label for="fruit-select">選擇水果：</label>
+        <select id="fruit-select" v-model="selectedFruit">
+            <option v-for="fruit in fruits" :value="fruit">
+                {{ fruit.name }} - {{ fruit.price }}元 - 庫存: {{ fruit.num }}
+            </option>
+        </select>
+
+        <!-- 數量選單 -->
+        <label for="quantity-select">選擇數量：</label>
+        <select id="quantity-select" v-model="selectedQuantity" :disabled="!selectedFruit">
+            <option v-for="n in (selectedFruit ? selectedFruit.num + 1 : 0)" :value="n - 1">
+                {{ n - 1 }}
+            </option>
+        </select>
+
+        <!-- 採購按鈕 -->
+        <button @click="addToCart">採購</button>
+
+        <!-- 購物清單表格 -->
+        <h2>購物清單</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>水果名稱</th>
+                    <th>價格</th>
+                    <th>數量</th>
+                    <th>金額</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(item, index) in cart" :key="index">
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.price }}元</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.totalPrice }}元</td>
+                    <td><button @click="removeFromCart(index)">刪除</button></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 總金額 -->
+        <h3>總金額: {{ totalAmount }}元</h3>
+
+        <!-- 結帳按鈕 -->
+        <button @click="checkout">結帳</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
